@@ -6,7 +6,7 @@ const DEFAULT_CONTEXT = {
     username: string,
     postBody: string,
     postTitle: string,
-    likes: number,
+    reactions: number,
     tags: any
   ) => {},
   deletePost: (postId: any) => {},
@@ -36,7 +36,7 @@ const PostListProvider = ({ children }: any) => {
     username: string,
     postTitle: string,
     postBody: string,
-    likes: number,
+    reactions: number,
     tags: any
   ) => {
     dispatchPostList({
@@ -46,7 +46,7 @@ const PostListProvider = ({ children }: any) => {
         userId: username,
         title: postTitle,
         body: postBody,
-        likes,
+        reactions,
         tags,
       },
     });
@@ -72,7 +72,7 @@ const DEFAULT_POST_LIST = [
     id: "1",
     title: "About You",
     body: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam rerum aperiam, tenetur esse impedit ea sapiente voluptatem veritatis, dolorem quaerat numquam cupiditate sint hic doloremque quos veniam deleniti dicta nam!",
-    likes: 45,
+    reactions: 45,
     userId: "user-1",
     tags: ["coding", "react.js"],
   },
@@ -80,7 +80,7 @@ const DEFAULT_POST_LIST = [
     id: "2",
     title: "About Me",
     body: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam rerum aperiam, tenetur esse impedit ea sapiente voluptatem veritatis, dolorem quaerat numquam cupiditate sint hic doloremque quos veniam deleniti dicta nam!",
-    likes: 32,
+    reactions: 32,
     userId: "user-1",
     tags: ["Summer", "Goa"],
   },

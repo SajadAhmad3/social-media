@@ -6,7 +6,7 @@ function CreatePost() {
   const usernameElement: any = useRef();
   const titleElement: any = useRef();
   const bodyElement: any = useRef();
-  const likesElement: any = useRef();
+  const reactionsElement: any = useRef();
   const tagsElement: any = useRef();
 
   function handleSubmit(event: any) {
@@ -14,16 +14,16 @@ function CreatePost() {
     const username = usernameElement.current.value;
     const postTitle = titleElement.current.value;
     const postBody = bodyElement.current.value;
-    const likes = likesElement.current.value;
+    const reactions = reactionsElement.current.value;
     const tags = tagsElement.current.value.split(" ");
 
     usernameElement.current.value = "";
     titleElement.current.value = "";
     bodyElement.current.value = "";
-    likesElement.current.value = "";
+    reactionsElement.current.value = "";
     tagsElement.current.value = "";
 
-    addPost(username, postTitle, postBody, likes, tags);
+    addPost(username, postTitle, postBody, reactions, tags);
   }
 
   return (
@@ -73,7 +73,7 @@ function CreatePost() {
             Post Likes
           </label>
           <input
-            ref={likesElement}
+            ref={reactionsElement}
             type="number"
             className="form-control"
             id="likes"
@@ -96,7 +96,7 @@ function CreatePost() {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Submit
+          Post
         </button>
       </form>
     </>

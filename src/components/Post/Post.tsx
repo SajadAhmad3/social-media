@@ -11,7 +11,7 @@ function Post({ post }: any) {
           <h5 className="card-title">
             {post.title}
             <span className="badge text-bg-success float-end">
-              {post.likes}
+              {post.reactions}
             </span>
             <span
               className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
