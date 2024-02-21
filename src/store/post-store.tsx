@@ -10,6 +10,7 @@ const DEFAULT_CONTEXT = {
     tags: any
   ) => {},
   deletePost: (postId: any) => {},
+  addPosts: (posts: any) => {},
 };
 
 export const PostList = createContext(DEFAULT_CONTEXT);
@@ -22,16 +23,15 @@ const PostListReducer = (currPostList: any, action: any) => {
       );
     case "ADD_POST":
       return [action.payload, ...currPostList];
+    case "ADD_POSTS":
+      return action.payload.posts;
     default:
       return currPostList;
   }
 };
 
 const PostListProvider = ({ children }: any) => {
-  const [postList, dispatchPostList] = useReducer(
-    PostListReducer,
-    DEFAULT_POST_LIST
-  );
+  const [postList, dispatchPostList] = useReducer(PostListReducer, []);
   const addPost = (
     username: string,
     postTitle: string,
@@ -60,30 +60,20 @@ const PostListProvider = ({ children }: any) => {
     });
   };
 
+  const addPosts = (posts: any) => {
+    dispatchPostList({
+      type: "ADD_POSTS",
+      payload: {
+        posts,
+      },
+    });
+  };
+
   return (
-    <PostList.Provider value={{ postList, addPost, deletePost }}>
+    <PostList.Provider value={{ postList, addPost, deletePost, addPosts }}>
       {children}
     </PostList.Provider>
   );
 };
-
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "About You",
-    body: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam rerum aperiam, tenetur esse impedit ea sapiente voluptatem veritatis, dolorem quaerat numquam cupiditate sint hic doloremque quos veniam deleniti dicta nam!",
-    reactions: 45,
-    userId: "user-1",
-    tags: ["coding", "react.js"],
-  },
-  {
-    id: "2",
-    title: "About Me",
-    body: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam rerum aperiam, tenetur esse impedit ea sapiente voluptatem veritatis, dolorem quaerat numquam cupiditate sint hic doloremque quos veniam deleniti dicta nam!",
-    reactions: 32,
-    userId: "user-1",
-    tags: ["Summer", "Goa"],
-  },
-];
 
 export default PostListProvider;

@@ -22,7 +22,7 @@ function Post({ post }: any) {
           </h5>
           <p className="card-text">{post.body}</p>
           {post.tags.map((tag: any) => (
-            <span key={tag} className="badge text-bg-primary mx-2 py-2">{tag}</span>
+            <span key={post.id} className="badge text-bg-primary mx-2 py-2">{tag}</span>
           ))}
         </div>
       </div>
